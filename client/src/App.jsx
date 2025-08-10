@@ -5,12 +5,13 @@ import Dashboard from "./pages/Dashboard";
 import SingUp from "./pages/SingUp";
 import Projects from "./pages/Projects";
 import SingIn from "./pages/SingIn";
-
+import Header from "./components/Header";
 
 
 function App() {
   return (
     <BrowserRouter>
+    <Header />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
@@ -18,7 +19,7 @@ function App() {
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path="/sing-up" element={<SingUp/>} />
         <Route path='/projects' element={<Projects />} />
-        <Route path="/sign-in" element={<SingIn/>} />
+        <Route path="/sing-in" element={<SingIn/>} />
         </Routes>
     </BrowserRouter>
   );
