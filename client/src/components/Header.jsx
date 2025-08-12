@@ -12,7 +12,7 @@ export default function Header() {
       {/* Brand */}
       <Link
         to="/"
-        className="self-center text-sm sm:text-xl font-semibold dark:text-white"
+        className="self-center text-sm sm:text-xl font-semibol text-white"
       >
         <span className="px-2 py-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white">
           Kratika's
@@ -48,8 +48,8 @@ export default function Header() {
         <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
           <FaMoon />
         </Button>
-        <Link to="/sing-in">
-          <Button color="purple">Sign in</Button>
+        <Link to="/sign-in">
+          <Button  className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition duration-200" >Sign in</Button>
         </Link>
       </div>
     </Navbar>
