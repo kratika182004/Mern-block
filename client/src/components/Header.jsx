@@ -1,11 +1,13 @@
 import React from 'react';
-import { Navbar, Button } from 'flowbite-react';
+import { Navbar, Button, Dropdown, Avatar, DropdownHeader, DropdownItem, DropdownDivider } from 'flowbite-react';
 import { Link, useLocation } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
   const path = useLocation().pathname;
+  const { currentUser } = useSelector((state) => state.user);
 
   return (
     <Navbar className="border-b-2">
@@ -45,13 +47,50 @@ export default function Header() {
         </Link>
       </div>
       <div className="flex items-center gap-2">
-        <Button className="w-12 h-10 hidden sm:inline" color="gray" pill>
+        <Button className="w-12 h-10 hidden sm:inline" color="white" pill>
           <FaMoon />
         </Button>
+        {currentUser ? (
+          <Dropdown
+          arrowIcon={false}
+            inline
+            label={
+              <Avatar
+              alt='user' img={currentUser.profilePicture} rounded/>
+              } >
+                <DropdownHeader>
+                <samp className='block text-sm'>
+              @{currentUser.username}
+              </samp>
+              <span className='block text-sm font-medium truncate'>
+                {currentUser.email}
+              </span>
+                </DropdownHeader>
+             <Link  to={'/dashboard?tab=profile'}>
+              <DropdownItem>
+              Profile
+              </DropdownItem>
+
+             </Link>
+             <DropdownDivider/>
+             <DropdownItem>
+              sign out
+              </DropdownItem>
+              
+          </Dropdown>
+         
+
+        ):
+      (
         <Link to="/sign-in">
           <Button  className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg shadow-md transition duration-200" >Sign in</Button>
         </Link>
-      </div>
+       
+      )
+    }
+  
+       </div>
+    
     </Navbar>
   );
 }
