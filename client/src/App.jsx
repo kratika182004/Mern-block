@@ -7,6 +7,8 @@ import Projects from "./pages/Projects";
 import SignIn from "./pages/SignIn";
 import Header from "./components/Header";
 
+import FooterCo from "./components/FooterCo";
+
 
 function App() {
   return (
@@ -15,12 +17,12 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-       
         <Route path='/dashboard' element={<Dashboard />} />
         <Route path="/sign-up" element={<SignUp/>} />
         <Route path='/projects' element={<Projects />} />
         <Route path="/sign-in" element={<SignIn />} />
         </Routes>
+        <FooterCo/>
     </BrowserRouter>
   );
 }
