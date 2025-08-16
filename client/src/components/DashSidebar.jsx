@@ -10,6 +10,7 @@ import {
     HiArrowSmRight,
     HiUser,
     HiDocumentText,
+    HiOutlineUserGroup
    
   } from 'react-icons/hi';
   import { useSelector } from 'react-redux';
@@ -71,6 +72,18 @@ export default function DashSidebar() {
               </SidebarItem>
             </Link>
   )}
+   {currentUser.isAdmin && (
+            
+              <Link to='/dashboard?tab=users'>
+                <SidebarItem
+                  active={tab === 'users'}
+                  icon={HiOutlineUserGroup}
+                  as='div'
+                >
+                  Users
+                </SidebarItem>
+                </Link>
+                )}
 
       <SidebarItem
         
