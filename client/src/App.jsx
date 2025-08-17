@@ -8,6 +8,8 @@ import SignIn from "./pages/SignIn";
 import Header from "./components/Header";
 import PrivateRoute from './components/PrivateRoute';
 import UpdatePost from './pages/UpdatePost';
+import PostPage from './pages/PostPage';
+import ScrollToTop from './components/ScrollToTop';
 
 import FooterCo from "./components/FooterCo";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
@@ -16,6 +18,7 @@ import CreatePost from './pages/CreatePost';
 function App() {
   return (
     <BrowserRouter>
+     <ScrollToTop />
     <Header />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -31,6 +34,7 @@ function App() {
         <Route path="/sign-up" element={<SignUp/>} />
         <Route path='/projects' element={<Projects />} />
         <Route path="/sign-in" element={<SignIn />} />
+        <Route path='/post/:postSlug' element={<PostPage />} />
         </Routes>
         <FooterCo/>
     </BrowserRouter>
