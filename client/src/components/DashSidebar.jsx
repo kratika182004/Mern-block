@@ -10,7 +10,9 @@ import {
     HiArrowSmRight,
     HiUser,
     HiDocumentText,
-    HiOutlineUserGroup
+    HiOutlineUserGroup,
+     HiAnnotation,
+      HiChartPie,
    
   } from 'react-icons/hi';
   import { useSelector } from 'react-redux';
@@ -50,6 +52,17 @@ export default function DashSidebar() {
     <Sidebar aria-label="Dashboard Sidebar" className='w-full md:w-56'>
     <SidebarItems>
       <SidebarItemGroup className='flex flex-col gap-1'>
+          {currentUser && currentUser.isAdmin && (
+            <Link to='/dashboard?tab=dash'>
+              <SidebarItem
+                active={tab === 'dash' || !tab}
+                icon={HiChartPie}
+                as='div'
+              >
+                Dashboard
+              </SidebarItem>
+            </Link>
+          )}
         <Link to='/dashboard?tab=profile'>
         
       <SidebarItem
@@ -74,6 +87,7 @@ export default function DashSidebar() {
   )}
    {currentUser.isAdmin && (
             
+               <>
               <Link to='/dashboard?tab=users'>
                 <SidebarItem
                   active={tab === 'users'}
@@ -82,7 +96,17 @@ export default function DashSidebar() {
                 >
                   Users
                 </SidebarItem>
-                </Link>
+              </Link>
+              <Link to='/dashboard?tab=comments'>
+                <SidebarItem
+                  active={tab === 'comments'}
+                  icon={HiAnnotation}
+                  as='div'
+                >
+                  Comments
+                </SidebarItem>
+              </Link>
+            </>
                 )}
 
       <SidebarItem
