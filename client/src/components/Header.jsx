@@ -1,15 +1,29 @@
 import React from 'react';
 import { Navbar, Button, Dropdown, Avatar, DropdownHeader, DropdownItem, DropdownDivider } from 'flowbite-react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FaMoon } from 'react-icons/fa';
 import { useSelector,useDispatch } from 'react-redux';
 import { signoutSuccess } from '../redux/user/userSlice';
 
+import { useEffect, useState } from 'react';
+
 export default function Header() {
   const dispatch = useDispatch();
+   const location = useLocation();
+     const navigate = useNavigate();
   const path = useLocation().pathname;
   const { currentUser } = useSelector((state) => state.user);
+   const [searchTerm, setSearchTerm] = useState('');
+    useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get('searchTerm');
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
+
+
   const handleSignout = async () => {
     try{
       const res = await fetch('/api/user/signout', {
@@ -27,6 +41,13 @@ export default function Header() {
    
     }
   }
+   const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set('searchTerm', searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
 
   return (
     <Navbar className="border-b-2">
@@ -41,11 +62,13 @@ export default function Header() {
       </Link>
 
       {/* Search Input (desktop) */}
-      <form className="hidden lg:block relative">
+      <form className="hidden lg:block relative" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Search..."
           className="border rounded-lg pl-3 pr-10 py-2"
+           value={searchTerm}
+           onChange={(e) => setSearchTerm(e.target.value)}
         />
         <AiOutlineSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
       </form>

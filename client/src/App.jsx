@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute';
 import UpdatePost from './pages/UpdatePost';
 import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
+import Search from './pages/Search';
 
 import FooterCo from "./components/FooterCo";
 import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute";
@@ -32,6 +33,7 @@ function App() {
         </Route>
        
         <Route path="/sign-up" element={<SignUp/>} />
+        <Route path='/search' element={<Search />} />
         <Route path='/projects' element={<Projects />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
